@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect, useState } from "react";
 import { Button, Drawer as DRW } from "antd";
-import "../../index.css";
+import "./Drawer.css";
 
 import { PlusOutlined } from "@ant-design/icons";
 import NuevaTarea from "../nueva_tarea/NuevaTarea";
@@ -31,6 +31,7 @@ const Drawer = ({ drawer }) => {
     <>
       <div className="drawer_container">
         <Button
+        className="btn_drawer"
         onClick={() => setShowDrawer(true)}
         icon={<PlusOutlined/>}
         >Tarea</Button>

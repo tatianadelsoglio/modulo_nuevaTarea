@@ -39,6 +39,22 @@
 
 @import "antd/dist/antd.css";
 
+.ant-btn-primary {
+    background-color: rgb(0, 179, 60) !important;
+    border-color: rgb(0, 179, 60) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.ant-radio-button-wrapper-checked{
+    background-color: rgb(0, 179, 60) !important;
+    border-color: rgb(0, 179, 60) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.buttons-wrapper{
+	display: flex;
+	flex-direction: row;
+}
 
 body {
 	background-color: rgb(255, 255, 255) !important;
