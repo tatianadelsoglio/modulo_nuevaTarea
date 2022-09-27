@@ -3,7 +3,7 @@ import { Col, Row } from "antd";
 import { useHistory } from "react-router-dom";
 import queryString from "query-string";
 import Drawer from "./Drawer";
-import { FileContext } from "../../context/FileContext";
+import { TaskContext } from "../../context/TaskContext";
 
 const MainLayout = () => {
   const history = useHistory();
@@ -25,7 +25,7 @@ const MainLayout = () => {
   const [modoriFilter, setModoriFilter] = useState(1);
   const [cliIdFilter, setCliIdFilter] = useState(null);
   return (
-    <FileContext.Provider
+    <TaskContext.Provider
       value={{
         modori,
         usu_id,
@@ -49,11 +49,11 @@ const MainLayout = () => {
       <Row gutter={[8, 8]}>
         <Col xs={24}>
           <div className="drawer_wrapper">
-            <Drawer drawer={drawer} />
+            <Drawer drawer={drawer}/>
           </div>
         </Col>
       </Row>
-    </FileContext.Provider>
+    </TaskContext.Provider>
   );
 };
 
