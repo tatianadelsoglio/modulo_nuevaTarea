@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState} from "react";
 import { Button, Drawer as DRW } from "antd";
 import "./Drawer.css";
-
-import { PlusOutlined } from "@ant-design/icons";
+// import { PlusOutlined } from "@ant-design/icons";
 import NuevaTarea from "../nueva_tarea/NuevaTarea";
+import { TaskContext } from "../../context/TaskContext";
+
 
 const Drawer = ({ drawer }) => {
-  const [showDrawer, setShowDrawer] = useState(false);
+  const {showDrawer, setShowDrawer } = useContext(TaskContext);
   useEffect(() => {
     let timer;
     if (drawer === "true") {
@@ -30,11 +31,11 @@ const Drawer = ({ drawer }) => {
   return (
     <>
       <div className="drawer_container">
-        <Button
+        {/* <Button
         className="btn_drawer"
         onClick={() => setShowDrawer(true)}
         icon={<PlusOutlined/>}
-        >Tarea</Button>
+        >Tarea</Button> */}
         <DRW
           title="Nueva Tarea"
           placement="right"

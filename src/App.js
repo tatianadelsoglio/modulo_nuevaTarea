@@ -8,6 +8,12 @@ import "./App.css";
 import MainLayout from "./components/layout/MainLayout";
 
 function App() {
+
+
+console.log(window.location);
+
+
+
   return (
     <ApolloProvider client={apolloClient}>
       <ConfigProvider locale={esES}>

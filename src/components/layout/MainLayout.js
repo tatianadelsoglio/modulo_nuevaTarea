@@ -15,7 +15,7 @@ const MainLayout = () => {
   const origen = search.ordigen ? search.origen : "todos";
   const generico_id = Number(search.generico_id);
   const cli_id = Number(search.cli_id);
-  const filter_id = Number(search.filter_id);
+  // const filter_id = Number(search.filter_id);
 
   const [modori, setModori] = useState(modori_id);
   const drawer = search.drawer;
@@ -24,6 +24,7 @@ const MainLayout = () => {
   const [searchFilter, setSearchFilter] = useState("");
   const [modoriFilter, setModoriFilter] = useState(1);
   const [cliIdFilter, setCliIdFilter] = useState(null);
+  const [showDrawer, setShowDrawer ] = useState(false);
   return (
     <TaskContext.Provider
       value={{
@@ -35,9 +36,10 @@ const MainLayout = () => {
         searchFilter,
         modoriFilter,
         generico_id,
-        filter_id,
         cli_id,
         cliIdFilter,
+        showDrawer, 
+        setShowDrawer,
         setCliIdFilter,
         setModoriFilter,
         setSearchFilter,

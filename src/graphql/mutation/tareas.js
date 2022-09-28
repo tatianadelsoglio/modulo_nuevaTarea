@@ -15,3 +15,9 @@ export const NEW_TAREA = gql`
     )
   }
 `;
+
+export const UPDATE_ESTADO_TAREA = gql`
+  mutation updateEstadoTareaIframeResolver($idTarea: Int) {
+    updateEstadoTareaIframeResolver(idTarea: $idTarea)
+  }
+`;

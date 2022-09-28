@@ -2,6 +2,7 @@
   "name": "modulo_nueva_tarea",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@apollo/client": "^3.6.9",
