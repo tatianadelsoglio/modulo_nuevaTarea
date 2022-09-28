@@ -14,6 +14,7 @@ import {
   TimePicker,
   Upload,
   Drawer as DRW,
+  Modal,
 } from "antd";
 import Note from "../note/Note";
 // import OpenNotification from "components/notification/OpenNotification";
@@ -30,6 +31,7 @@ import { GET_USUARIOS } from "../../graphql/query/Usuarios";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import "../../index.css";
+
 
 const NuevaTarea = () => {
   const { idUser, noteContent, setShowDrawer } = useContext(TaskContext);
@@ -64,6 +66,22 @@ const NuevaTarea = () => {
   });
 
   const [getContactos] = useLazyQuery(GET_CONTACTOS);
+
+  const ModalTarea = () => {
+    let secondsToGo = 5;
+    const modal = Modal.success({
+      title: 'Tarea Creada Exitosamente!',
+    });
+    const timer = setInterval(() => {
+      secondsToGo -= 1;
+    }, 1000);
+    setTimeout(() => {
+      clearInterval(timer);
+      modal.destroy();
+    }, secondsToGo * 1000);
+  
+    setShowDrawer(false);
+  };
 
   const PORT = `4001`; //puerto de escucha de GraphQL
   const PROTOCOL = window.location.protocol;
@@ -164,30 +182,34 @@ const NuevaTarea = () => {
     const asignacion = 1;
     const est_id = 1;
 
-    console.log("tar_asunto: ", tar_asunto, "tar_horavencimiento: ", tar_horavencimiento,"tar_vencimiento: ",tar_vencimiento,
-    "usu_id: ", usu_id, "cli_id: ", cli_id, "con_id: ",con_id,"tip_id: ",tip_id,"pri_id: ", pri_id, "ori_id: ", ori_id, 
-      "asignacion: ", asignacion, "est_id: ", est_id)
+    // console.log("tar_asunto: ", tar_asunto, "tar_horavencimiento: ", tar_horavencimiento,"tar_vencimiento: ",tar_vencimiento,
+    // "usu_id: ", usu_id, "cli_id: ", cli_id, "con_id: ",con_id,"tip_id: ",tip_id,"pri_id: ", pri_id, "ori_id: ", ori_id, 
+    //   "asignacion: ", asignacion, "est_id: ", est_id)
 
-    // newTareaIframeResolver({
-    // variables: {
-    //   inputTarea: {
-    // tar_asunto: v.tar_asunto,
-    // tar_horavencimiento: moment(v.tar_horavencimiento).format("HH:mm"),
-    // tar_vencimiento: v.tar_vencimiento,
-    // usu_id: idUser,
-    // cli_id: Number(v.cliente),
-    // con_id: v.contacto ? Number(v.contacto) : null,
-    // tip_id: Number(v.tip_id),
-    // pri_id: Number(v.importancia),
-    // ori_id: v.fuente,
-    // asignacion: 1,
-    // est_id: 1,
-    //   },
-    //   inputNota: objetoNota,
-    //   inputAdjunto: objetoUpload,
-    //   usuAsig: v.usuarioAsignado ? v.usuarioAsignado : idUser,
-    // },
-    // });
+    newTareaIframeResolver({
+    variables: {
+      inputTarea: {
+    tar_asunto: v.tar_asunto,
+    tar_horavencimiento: moment(v.tar_horavencimiento).format("HH:mm"),
+    tar_vencimiento: v.tar_vencimiento,
+    usu_id: idUser,
+    cli_id: Number(v.cliente),
+    con_id: v.contacto ? Number(v.contacto) : null,
+    tip_id: Number(v.tip_id),
+    pri_id: Number(v.importancia),
+    ori_id: v.fuente,
+    asignacion: 1,
+    est_id: 1,
+      },
+      inputNota: objetoNota,
+      inputAdjunto: objetoUpload,
+      usuAsig: v.usuarioAsignado ? v.usuarioAsignado : idUser,
+    },
+    });
+
+    form.resetFields();
+    ModalTarea();
+    
   };
 
   useEffect(() => {

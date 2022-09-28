@@ -25,6 +25,7 @@ const MainLayout = () => {
   const [modoriFilter, setModoriFilter] = useState(1);
   const [cliIdFilter, setCliIdFilter] = useState(null);
   const [showDrawer, setShowDrawer ] = useState(false);
+  const [idUser, setIdUser] = useState(usu_id);
   return (
     <TaskContext.Provider
       value={{
@@ -38,7 +39,9 @@ const MainLayout = () => {
         generico_id,
         cli_id,
         cliIdFilter,
-        showDrawer, 
+        showDrawer,
+        idUser, 
+        setIdUser, 
         setShowDrawer,
         setCliIdFilter,
         setModoriFilter,
