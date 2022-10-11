@@ -18,7 +18,6 @@ const MainLayout = () => {
   // const filter_id = Number(search.filter_id);
 
   const [modori, setModori] = useState(modori_id);
-  const drawer = search.drawer;
   const [tagsSelectFilters, setTagsSelectFilters] = useState([]);
   const [expiredDate, setExpiredDate] = useState("no vencidos"); // vencidos o no vencidos
   const [searchFilter, setSearchFilter] = useState("");
@@ -26,6 +25,9 @@ const MainLayout = () => {
   const [cliIdFilter, setCliIdFilter] = useState(null);
   const [showDrawer, setShowDrawer ] = useState(false);
   const [idUser, setIdUser] = useState(usu_id);
+  const [modOrigen, setModOrigen] = useState("");
+  const drawer = search.drawer;
+  const modorigen = search.modori_id;
   return (
     <TaskContext.Provider
       value={{
@@ -40,7 +42,9 @@ const MainLayout = () => {
         cli_id,
         cliIdFilter,
         showDrawer,
-        idUser, 
+        idUser,
+        modOrigen, 
+        setModOrigen, 
         setIdUser, 
         setShowDrawer,
         setCliIdFilter,
@@ -54,7 +58,7 @@ const MainLayout = () => {
       <Row gutter={[8, 8]}>
         <Col xs={24}>
           <div className="drawer_wrapper">
-            <Drawer drawer={drawer}/>
+            <Drawer drawer={drawer} modorigen={modorigen} usuId={idUser}/>
           </div>
         </Col>
       </Row>

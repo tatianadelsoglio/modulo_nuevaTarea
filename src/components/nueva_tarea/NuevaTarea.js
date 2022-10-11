@@ -33,8 +33,7 @@ import { useContext, useEffect, useState } from "react";
 import "../../index.css";
 import Notificacion from "../layout/Notificacion";
 
-
-const NuevaTarea = () => {
+const NuevaTarea = ({ modorigen, usuId }) => {
   const { idUser, noteContent, setShowDrawer } = useContext(TaskContext);
 
   const [tipoTareas, setTipoTareas] = useState([]);
@@ -80,7 +79,7 @@ const NuevaTarea = () => {
   //     clearInterval(timer);
   //     modal.destroy();
   //   }, secondsToGo * 1000);
-  
+
   //   setShowDrawer(false);
   // };
 
@@ -149,6 +148,8 @@ const NuevaTarea = () => {
   };
 
   const onFinish = (v) => {
+
+    console.log(v);
     const { upload } = v;
 
     let objetoUpload = null;
@@ -183,29 +184,26 @@ const NuevaTarea = () => {
     const asignacion = 1;
     const est_id = 1;
 
-    // console.log("tar_asunto: ", tar_asunto, "tar_horavencimiento: ", tar_horavencimiento,"tar_vencimiento: ",tar_vencimiento,
-    // "usu_id: ", usu_id, "cli_id: ", cli_id, "con_id: ",con_id,"tip_id: ",tip_id,"pri_id: ", pri_id, "ori_id: ", ori_id, 
-    //   "asignacion: ", asignacion, "est_id: ", est_id)
-
     newTareaIframeResolver({
-    variables: {
-      inputTarea: {
-    tar_asunto: v.tar_asunto,
-    tar_horavencimiento: moment(v.tar_horavencimiento).format("HH:mm"),
-    tar_vencimiento: v.tar_vencimiento,
-    usu_id: idUser,
-    cli_id: Number(v.cliente),
-    con_id: v.contacto ? Number(v.contacto) : null,
-    tip_id: Number(v.tip_id),
-    pri_id: Number(v.importancia),
-    ori_id: v.fuente,
-    asignacion: 1,
-    est_id: 1,
+      variables: {
+        inputTarea: {
+          tar_asunto: v.tar_asunto,
+          tar_horavencimiento: moment(v.tar_horavencimiento).format("HH:mm"),
+          tar_vencimiento: v.tar_vencimiento,
+          usu_id: Number(idUser),
+          cli_id: Number(v.cliente),
+          con_id: v.contacto ? Number(v.contacto) : null,
+          tip_id: Number(v.tip_id),
+          pri_id: Number(v.importancia),
+          ori_id: v.fuente,
+          mod_id: Number(modorigen),
+          asignacion: 1,
+          est_id: 1,
+        },
+        inputNota: objetoNota,
+        inputAdjunto: objetoUpload,
+        usuAsig: v.usuarioAsignado ? v.usuarioAsignado : idUser,
       },
-      inputNota: objetoNota,
-      inputAdjunto: objetoUpload,
-      usuAsig: v.usuarioAsignado ? v.usuarioAsignado : idUser,
-    },
     });
 
     form.resetFields();
@@ -217,7 +215,6 @@ const NuevaTarea = () => {
       <CheckOutlined style={{ color: "green" }} />,
       null
     );
-    
   };
 
   useEffect(() => {

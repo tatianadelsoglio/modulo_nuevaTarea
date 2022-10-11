@@ -7,8 +7,11 @@ import NuevaTarea from "../nueva_tarea/NuevaTarea";
 import { TaskContext } from "../../context/TaskContext";
 
 
-const Drawer = ({ drawer }) => {
-  const {showDrawer, setShowDrawer } = useContext(TaskContext);
+const Drawer = ({ drawer, modorigen}) => {
+  const {showDrawer, setShowDrawer, modOrigen, setModOrigen, idUser, setIdUser} = useContext(TaskContext);
+
+  setModOrigen(modorigen);
+
   useEffect(() => {
     let timer;
     if (drawer === "true") {
@@ -45,7 +48,7 @@ const Drawer = ({ drawer }) => {
           width={600}
           height="100%"
         >
-          <NuevaTarea/>
+          <NuevaTarea modorigen={modOrigen}/>
         </DRW>
       </div>
     </>
