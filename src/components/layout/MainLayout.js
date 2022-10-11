@@ -11,6 +11,7 @@ const MainLayout = () => {
 
   // Variables que vienen por URL
   const modori_id = Number(search.modori_id) ? Number(search.modori_id) : null;
+  console.log(modori);
   const usu_id = Number(search.usu_id) ? Number(search.usu_id) : 1;
   const origen = search.ordigen ? search.origen : "todos";
   const generico_id = Number(search.generico_id);
@@ -28,6 +29,7 @@ const MainLayout = () => {
   const [modOrigen, setModOrigen] = useState("");
   const drawer = search.drawer;
   const modorigen = search.modori_id;
+  console.log(modorigen);
   return (
     <TaskContext.Provider
       value={{
