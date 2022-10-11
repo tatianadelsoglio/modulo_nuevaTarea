@@ -149,7 +149,7 @@ const NuevaTarea = ({ modorigen, usuId }) => {
 
   const onFinish = (v) => {
 
-    console.log(v);
+    console.log(modorigen);
     const { upload } = v;
 
     let objetoUpload = null;
