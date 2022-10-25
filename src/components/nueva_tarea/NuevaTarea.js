@@ -32,6 +32,7 @@ import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import "../../index.css";
 import Notificacion from "../layout/Notificacion";
+import "./NuevaTarea.css";
 
 const NuevaTarea = ({ modorigen, usuId }) => {
   const { idUser, noteContent, setShowDrawer } = useContext(TaskContext);
@@ -309,49 +310,64 @@ const NuevaTarea = ({ modorigen, usuId }) => {
                 <Input />
               </Form.Item>
 
-              <Form.Item
-                label="Tipo de tarea"
-                name="tip_id"
-                rules={[
-                  {
-                    required: true,
-                    message: "",
-                  },
-                ]}
-              >
-                <Select>
-                  {tipoTareas &&
-                    tipoTareas.map((item) => {
-                      return (
-                        <Select.Option key={item.tip_id} value={item.tip_id}>
-                          {item.tip_desc}
-                        </Select.Option>
-                      );
-                    })}
-                </Select>
-              </Form.Item>
-
-              <Form.Item
-                label="Fuente"
-                name="fuente"
-                rules={[
-                  {
-                    required: true,
-                    message: "",
-                  },
-                ]}
-              >
-                <Select>
-                  {origenes &&
-                    origenes.map((item) => {
-                      return (
-                        <Select.Option key={item.ori_id} value={item.ori_id}>
-                          {item.ori_desc}
-                        </Select.Option>
-                      );
-                    })}
-                </Select>
-              </Form.Item>
+              <Row>
+              <Col xs={24}>
+                <div className="date_wrapper">
+                  <Col xs={11}>
+                    <Form.Item
+                      label="Tipo de tarea"
+                      name="tip_id"
+                      rules={[
+                        {
+                          required: true,
+                          message: "",
+                        },
+                      ]}
+                    >
+                      <Select>
+                        {tipoTareas &&
+                          tipoTareas.map((item) => {
+                            return (
+                              <Select.Option
+                                key={item.tip_id}
+                                value={item.tip_id}
+                              >
+                                {item.tip_desc}
+                              </Select.Option>
+                            );
+                          })}
+                      </Select>
+                    </Form.Item>
+                  </Col>
+                  <Col xs={11}>
+                    <Form.Item
+                      label="Fuente"
+                      name="fuente"
+                      rules={[
+                        {
+                          required: true,
+                          message: "",
+                        },
+                      ]}
+                    >
+                      <Select>
+                        {origenes &&
+                          origenes.map((item) => {
+                            return (
+                              <Select.Option
+                                key={item.ori_id}
+                                value={item.ori_id}
+                              >
+                                {item.ori_desc}
+                              </Select.Option>
+                            );
+                          })}
+                      </Select>
+                    </Form.Item>
+                  </Col>
+                </div>
+              </Col>
+            </Row>
 
               <Row>
                 <Col xs={24}>
@@ -376,7 +392,7 @@ const NuevaTarea = ({ modorigen, usuId }) => {
                         />
                       </Form.Item>
                     </Col>
-                    <Col xs={5}>
+                    <Col xs={11}>
                       <Form.Item
                         label="Hora"
                         name="tar_horavencimiento"
@@ -394,7 +410,6 @@ const NuevaTarea = ({ modorigen, usuId }) => {
                         />
                       </Form.Item>
                     </Col>
-                    <Col xs={11} />
                   </div>
                 </Col>
               </Row>

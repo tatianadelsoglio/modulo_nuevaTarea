@@ -37,7 +37,6 @@ const Drawer = ({ drawer, modorigen}) => {
         {/* <Button
         className="btn_drawer"
         onClick={() => setShowDrawer(true)}
-        icon={<PlusOutlined/>}
         >Tarea</Button> */}
         <DRW
           title="Nueva Tarea"
