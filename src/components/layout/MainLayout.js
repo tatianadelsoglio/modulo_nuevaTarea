@@ -21,9 +21,7 @@ const MainLayout = () => {
   //OBJETO DIVIDO EN CADA CAMPO
   const campo1 = content.infoCampo1;
   const campo2 = content.infoCampo2;
-  // console.log("Desde Modulo campo1: ", campo1);
-  // console.log("Desde Modulo campo2: ", campo2);
-
+  const campo3 = content.infoCampo3;
 
   const origen = search.ordigen ? search.origen : "todos";
   const generico_id = Number(search.generico_id);
@@ -33,6 +31,7 @@ const MainLayout = () => {
   const [modori, setModori] = useState(modori_id);
   const [campoUno, setCampoUno] = useState(campo1);
   const [campoDos, setCampoDos] = useState(campo2);
+  const [campoTres, setCampoTres] = useState(campo3);
   const [tagsSelectFilters, setTagsSelectFilters] = useState([]);
   const [expiredDate, setExpiredDate] = useState("no vencidos"); // vencidos o no vencidos
   const [searchFilter, setSearchFilter] = useState("");
@@ -45,7 +44,6 @@ const MainLayout = () => {
   const modorigen = search.modori_id;
   //console.log(modorigen);
 
-  console.log(campoUno, campoDos)
   return (
     <TaskContext.Provider
       value={{
@@ -64,6 +62,8 @@ const MainLayout = () => {
         modOrigen, 
         campoUno, 
         campoDos, 
+        campoTres, 
+        setCampoTres,
         setCampoDos,
         setCampoUno,
         setModOrigen, 
@@ -80,7 +80,7 @@ const MainLayout = () => {
       <Row gutter={[8, 8]}>
         <Col xs={24}>
           <div className="drawer_wrapper">
-            <Drawer drawer={drawer} modorigen={modorigen} usuId={idUser}/>
+            <Drawer drawer={drawer} modorigen={modorigen} usuId={idUser} campouno={campoUno} campodos={campoDos} campotres={campoTres}/>
           </div>
         </Col>
       </Row>

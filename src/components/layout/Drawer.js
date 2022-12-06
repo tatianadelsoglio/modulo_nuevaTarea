@@ -7,8 +7,8 @@ import NuevaTarea from "../nueva_tarea/NuevaTarea";
 import { TaskContext } from "../../context/TaskContext";
 
 
-const Drawer = ({ drawer, modorigen}) => {
-  const {showDrawer, setShowDrawer, modOrigen, setModOrigen, idUser, setIdUser, campoUno, campoDos} = useContext(TaskContext);
+const Drawer = ({ drawer, modorigen, campouno, campodos, campotres}) => {
+  const {showDrawer, setShowDrawer, modOrigen, setModOrigen, idUser, setIdUser, campoUno, campoDos, campoTres} = useContext(TaskContext);
 
   setModOrigen(modorigen);
 
@@ -31,7 +31,6 @@ const Drawer = ({ drawer, modorigen}) => {
     return true;
   };
 
-  console.log(campoUno, campoDos)
 
   return (
     <>
@@ -49,7 +48,7 @@ const Drawer = ({ drawer, modorigen}) => {
           width={600}
           height="100%"
         >
-          <NuevaTarea modorigen={modOrigen}/>
+          <NuevaTarea modorigen={modOrigen} campouno={campoUno} campodos={campoDos} campotres={campoTres}/>
         </DRW>
       </div>
     </>

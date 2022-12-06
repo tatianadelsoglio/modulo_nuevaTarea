@@ -34,8 +34,9 @@ import "../../index.css";
 import Notificacion from "../layout/Notificacion";
 import "./NuevaTarea.css";
 
-const NuevaTarea = ({ modorigen }) => {
-  const { idUser, noteContent, setShowDrawer,campoUno, campoDos} = useContext(TaskContext);
+const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
+  const { idUser, noteContent, setShowDrawer } = useContext(TaskContext);
+
 
   const [tipoTareas, setTipoTareas] = useState([]);
   const [searchCliente, setSearchCliente] = useState("");
@@ -50,7 +51,17 @@ const NuevaTarea = ({ modorigen }) => {
 
   // const { startPolling, stopPolling } = queryPoll;
 
-  const [newTareaIframeResolver] = useMutation(NEW_TAREA);
+  const [newTareaIframeResolver] = useMutation(NEW_TAREA, {
+    onCompleted: () => {
+      Notificacion(
+        <h4>Tarea creada exitosamente!</h4>,
+        null,
+        "topleft",
+        <CheckOutlined style={{ color: "green" }} />,
+        null
+      );
+    }
+  });
 
   const { data: dataTipoTareas } = useQuery(GET_TIPO_TAREA, {
     variables: { idCategoria: 1 },
@@ -67,22 +78,6 @@ const NuevaTarea = ({ modorigen }) => {
   });
 
   const [getContactos] = useLazyQuery(GET_CONTACTOS);
-
-  // const ModalTarea = () => {
-  //   let secondsToGo = 5;
-  //   const modal = Modal.success({
-  //     title: 'Tarea Creada Exitosamente!',
-  //   });
-  //   const timer = setInterval(() => {
-  //     secondsToGo -= 1;
-  //   }, 1000);
-  //   setTimeout(() => {
-  //     clearInterval(timer);
-  //     modal.destroy();
-  //   }, secondsToGo * 1000);
-
-  //   setShowDrawer(false);
-  // };
 
   const PORT = `4001`; //puerto de escucha de GraphQL
   const PROTOCOL = window.location.protocol;
@@ -149,7 +144,6 @@ const NuevaTarea = ({ modorigen }) => {
   };
 
   const onFinish = (v) => {
-
     console.log(modorigen);
     const { upload } = v;
 
@@ -204,18 +198,12 @@ const NuevaTarea = ({ modorigen }) => {
         inputNota: objetoNota,
         inputAdjunto: objetoUpload,
         usuAsig: v.usuarioAsignado ? v.usuarioAsignado : idUser,
+        idLote: Number(campotres)
       },
     });
 
     form.resetFields();
 
-    Notificacion(
-      <h4>Tarea creada exitosamente!</h4>,
-      null,
-      "topleft",
-      <CheckOutlined style={{ color: "green" }} />,
-      null
-    );
   };
 
   useEffect(() => {
@@ -297,13 +285,21 @@ const NuevaTarea = ({ modorigen }) => {
                 </Select>
               </Form.Item>
 
-              {/* <Form.Item label="Campo" name="campo">
-                <Input disabled>{campoUno}</Input>
+              <Form.Item
+                label="Campo"
+                name="campo"
+                
+              >
+                <Input disabled placeholder={campouno} value={campouno}/>
               </Form.Item>
 
-              <Form.Item label="Lote" name="lote">
-                <Input disabled>{campoDos}</Input>
-              </Form.Item> */}
+              <Form.Item
+                label="Lote"
+                name="lote"
+                
+              >
+                <Input disabled placeholder={campodos} value={campodos}/>
+              </Form.Item>
 
               <Form.Item
                 label="Asunto"
@@ -319,63 +315,63 @@ const NuevaTarea = ({ modorigen }) => {
               </Form.Item>
 
               <Row>
-              <Col xs={24}>
-                <div className="date_wrapper">
-                  <Col xs={11}>
-                    <Form.Item
-                      label="Tipo de tarea"
-                      name="tip_id"
-                      rules={[
-                        {
-                          required: true,
-                          message: "",
-                        },
-                      ]}
-                    >
-                      <Select>
-                        {tipoTareas &&
-                          tipoTareas.map((item) => {
-                            return (
-                              <Select.Option
-                                key={item.tip_id}
-                                value={item.tip_id}
-                              >
-                                {item.tip_desc}
-                              </Select.Option>
-                            );
-                          })}
-                      </Select>
-                    </Form.Item>
-                  </Col>
-                  <Col xs={11}>
-                    <Form.Item
-                      label="Fuente"
-                      name="fuente"
-                      rules={[
-                        {
-                          required: true,
-                          message: "",
-                        },
-                      ]}
-                    >
-                      <Select>
-                        {origenes &&
-                          origenes.map((item) => {
-                            return (
-                              <Select.Option
-                                key={item.ori_id}
-                                value={item.ori_id}
-                              >
-                                {item.ori_desc}
-                              </Select.Option>
-                            );
-                          })}
-                      </Select>
-                    </Form.Item>
-                  </Col>
-                </div>
-              </Col>
-            </Row>
+                <Col xs={24}>
+                  <div className="date_wrapper">
+                    <Col xs={11}>
+                      <Form.Item
+                        label="Tipo de tarea"
+                        name="tip_id"
+                        rules={[
+                          {
+                            required: true,
+                            message: "",
+                          },
+                        ]}
+                      >
+                        <Select>
+                          {tipoTareas &&
+                            tipoTareas.map((item) => {
+                              return (
+                                <Select.Option
+                                  key={item.tip_id}
+                                  value={item.tip_id}
+                                >
+                                  {item.tip_desc}
+                                </Select.Option>
+                              );
+                            })}
+                        </Select>
+                      </Form.Item>
+                    </Col>
+                    <Col xs={11}>
+                      <Form.Item
+                        label="Fuente"
+                        name="fuente"
+                        rules={[
+                          {
+                            required: true,
+                            message: "",
+                          },
+                        ]}
+                      >
+                        <Select>
+                          {origenes &&
+                            origenes.map((item) => {
+                              return (
+                                <Select.Option
+                                  key={item.ori_id}
+                                  value={item.ori_id}
+                                >
+                                  {item.ori_desc}
+                                </Select.Option>
+                              );
+                            })}
+                        </Select>
+                      </Form.Item>
+                    </Col>
+                  </div>
+                </Col>
+              </Row>
 
               <Row>
                 <Col xs={24}>
