@@ -18,3 +18,12 @@ export const GET_CLIENTES_LIMIT = gql`
     }
   }
 `;
+
+export const GET_CLIENTES_LOTE = gql`
+  query getClienteByLote($idLote: Int) {
+    getClienteByLoteResolver(idLote: $idLote) {
+      cli_id
+      cli_nombre
+    }
+  }
+`;

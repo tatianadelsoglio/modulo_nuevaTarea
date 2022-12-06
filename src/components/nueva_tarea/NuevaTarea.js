@@ -22,6 +22,7 @@ import { TaskContext } from "../../context/TaskContext";
 import { NEW_TAREA } from "../../graphql/mutation/tareas";
 import {
   GET_CLIENTES_LIMIT,
+  GET_CLIENTES_LOTE,
   GET_CONTACTOS,
 } from "../../graphql/query/Clientes";
 import { GET_ORIGENES } from "../../graphql/query/Origenes";
@@ -67,8 +68,12 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
     variables: { idCategoria: 1 },
   });
 
-  const { data: dataClientes } = useQuery(GET_CLIENTES_LIMIT, {
-    variables: { input: searchCliente, idUsuario: idUser },
+  // const { data: dataClientes } = useQuery(GET_CLIENTES_LIMIT, {
+  //   variables: { input: searchCliente, idUsuario: idUser },
+  // });
+
+  const { data: dataClientes } = useQuery(GET_CLIENTES_LOTE, {
+    variables: { idLote: campotres },
   });
 
   const { data: dataOrigenes } = useQuery(GET_ORIGENES);
@@ -134,7 +139,16 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
     }
   };
 
-  const handleChangeCliente = (v) => {
+  // const handleChangeCliente = (v) => {
+  //   form.resetFields(["contacto"]);
+  //   getContactos({ variables: { id: Number(v) } }).then((res) => {
+  //     if (res) {
+  //       setContactos(res.data.getContactosResolver);
+  //     }
+  //   });
+  // };
+
+  function handleChangeCliente(v) {
     form.resetFields(["contacto"]);
     getContactos({ variables: { id: Number(v) } }).then((res) => {
       if (res) {
@@ -142,6 +156,7 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
       }
     });
   };
+
 
   const onFinish = (v) => {
     console.log(modorigen);
@@ -211,9 +226,16 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
       setTipoTareas(dataTipoTareas.getTiposTareaResolver);
     }
 
+    // if (dataClientes) {
+    //   setClientes(dataClientes.getClientesLimitResolver);
+    // }
+
     if (dataClientes) {
-      setClientes(dataClientes.getClientesLimitResolver);
+      console.log("Data clientes: ",dataClientes)
+      setClientes(dataClientes.getClienteByLoteResolver[0]);
+      handleChangeCliente(clientes.cli_id)
     }
+
 
     if (dataOrigenes) {
       setOrigenes(dataOrigenes.getOrigenesResolver);
@@ -247,7 +269,7 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
                   },
                 ]}
               >
-                <Select
+                {/* <Select
                   showSearch
                   allowClear
                   onClear={() => {
@@ -262,14 +284,12 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
                   onChange={(v) => handleChangeCliente(v)}
                 >
                   {clientes &&
-                    clientes.map((item) => {
-                      return (
-                        <Select.Option key={item.cli_id} value={item.cli_id}>
-                          {item.cli_nombre}
-                        </Select.Option>
-                      );
-                    })}
-                </Select>
+                    <Select.Option key={clientes.cli_id} value={clientes.cli_id}>
+                    {clientes.cli_nombre}
+                    </Select.Option>
+                  }
+                </Select> */}
+                <Input disabled placeholder={clientes.cli_nombre} value={clientes.cli_id}/>
               </Form.Item>
 
               <Form.Item label="Contacto" name="contacto">
