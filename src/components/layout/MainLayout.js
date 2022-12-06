@@ -11,14 +11,28 @@ const MainLayout = () => {
 
   // Variables que vienen por URL
   const modori_id = Number(search.modori_id) ? Number(search.modori_id) : null;
-  console.log(modori_id);
+  //console.log(modori_id);
   const usu_id = Number(search.usu_id) ? Number(search.usu_id) : 1;
+
+  // OBJETO QUE VIAJA POR URL COMO STRING
+  const contentURL = search.content;
+  //STRING PASADO A OBJETO PARA LUEGO TRABAJARLO
+  const content = JSON.parse(contentURL);
+  //OBJETO DIVIDO EN CADA CAMPO
+  const campo1 = content.infoCampo1;
+  const campo2 = content.infoCampo2;
+  // console.log("Desde Modulo campo1: ", campo1);
+  // console.log("Desde Modulo campo2: ", campo2);
+
+
   const origen = search.ordigen ? search.origen : "todos";
   const generico_id = Number(search.generico_id);
   const cli_id = Number(search.cli_id);
   // const filter_id = Number(search.filter_id);
 
   const [modori, setModori] = useState(modori_id);
+  const [campoUno, setCampoUno] = useState(campo1);
+  const [campoDos, setCampoDos] = useState(campo2);
   const [tagsSelectFilters, setTagsSelectFilters] = useState([]);
   const [expiredDate, setExpiredDate] = useState("no vencidos"); // vencidos o no vencidos
   const [searchFilter, setSearchFilter] = useState("");
@@ -29,7 +43,9 @@ const MainLayout = () => {
   const [modOrigen, setModOrigen] = useState("");
   const drawer = search.drawer;
   const modorigen = search.modori_id;
-  console.log(modorigen);
+  //console.log(modorigen);
+
+  console.log(campoUno, campoDos)
   return (
     <TaskContext.Provider
       value={{
@@ -46,6 +62,10 @@ const MainLayout = () => {
         showDrawer,
         idUser,
         modOrigen, 
+        campoUno, 
+        campoDos, 
+        setCampoDos,
+        setCampoUno,
         setModOrigen, 
         setIdUser, 
         setShowDrawer,

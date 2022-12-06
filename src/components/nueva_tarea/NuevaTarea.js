@@ -34,8 +34,8 @@ import "../../index.css";
 import Notificacion from "../layout/Notificacion";
 import "./NuevaTarea.css";
 
-const NuevaTarea = ({ modorigen, usuId }) => {
-  const { idUser, noteContent, setShowDrawer } = useContext(TaskContext);
+const NuevaTarea = ({ modorigen }) => {
+  const { idUser, noteContent, setShowDrawer,campoUno, campoDos} = useContext(TaskContext);
 
   const [tipoTareas, setTipoTareas] = useState([]);
   const [searchCliente, setSearchCliente] = useState("");
@@ -296,6 +296,14 @@ const NuevaTarea = ({ modorigen, usuId }) => {
                     })}
                 </Select>
               </Form.Item>
+
+              {/* <Form.Item label="Campo" name="campo">
+                <Input disabled>{campoUno}</Input>
+              </Form.Item>
+
+              <Form.Item label="Lote" name="lote">
+                <Input disabled>{campoDos}</Input>
+              </Form.Item> */}
 
               <Form.Item
                 label="Asunto"

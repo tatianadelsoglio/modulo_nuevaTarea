@@ -8,7 +8,7 @@ import { TaskContext } from "../../context/TaskContext";
 
 
 const Drawer = ({ drawer, modorigen}) => {
-  const {showDrawer, setShowDrawer, modOrigen, setModOrigen, idUser, setIdUser} = useContext(TaskContext);
+  const {showDrawer, setShowDrawer, modOrigen, setModOrigen, idUser, setIdUser, campoUno, campoDos} = useContext(TaskContext);
 
   setModOrigen(modorigen);
 
@@ -30,6 +30,8 @@ const Drawer = ({ drawer, modorigen}) => {
     setShowDrawer(false);
     return true;
   };
+
+  console.log(campoUno, campoDos)
 
   return (
     <>
