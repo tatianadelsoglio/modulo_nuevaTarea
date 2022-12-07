@@ -16,17 +16,18 @@ const MainLayout = () => {
 
   //Tarea desde Lotes, datos que se traen por localstorage
 
-  // const nombreC="DARREGUEIRA";
-  // const nombreL="SIN LOTE";
-  // const loteid= 0;
-  // localStorage.setItem("NombreCampo", nombreC);  
-  // localStorage.setItem("NombreLote", nombreL);
+  const nombreC="DARREGUEIRA";
+  const nombreL="SIN LOTE";
+  const loteid= 5;
+  localStorage.setItem("NombreCampo", nombreC);  
+  localStorage.setItem("NombreLote", nombreL);
+  localStorage.setItem("loteId", loteid);
 
   const campo1 = localStorage.getItem("NombreCampo");
   const campo2 = localStorage.getItem("NombreLote");
   const campo3 = Number(localStorage.getItem("loteId"));
 
-  console.log(campo3)
+  //console.log(campo3)
 
   const origen = search.ordigen ? search.origen : "todos";
   const generico_id = Number(search.generico_id);

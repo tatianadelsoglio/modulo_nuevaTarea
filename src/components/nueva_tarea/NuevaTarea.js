@@ -154,13 +154,13 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
       if (res) {
         setContactos(res.data.getContactosResolver);
       }
-      console.log("desde nueva tarea, contactos: ", contactos)
     });
   };
 
 
   const onFinish = (v) => {
     console.log(modorigen);
+    console.log(v)
     const { upload } = v;
 
     let objetoUpload = null;
@@ -187,7 +187,8 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
     const tar_horavencimiento = moment(v.tar_horavencimiento).format("HH:mm");
     const tar_vencimiento = v.tar_vencimiento;
     const usu_id = idUser;
-    const cli_id = Number(v.cliente);
+    const cli_id = Number(clientes.cli_id);
+    //console.log(cli_id)
     const con_id = v.contacto ? Number(v.contacto) : null;
     const tip_id = Number(v.tip_id);
     const pri_id = Number(v.importancia);
@@ -202,7 +203,7 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
           tar_horavencimiento: moment(v.tar_horavencimiento).format("HH:mm"),
           tar_vencimiento: v.tar_vencimiento,
           usu_id: Number(idUser),
-          cli_id: Number(v.cliente),
+          cli_id: Number(clientes.cli_id),
           con_id: v.contacto ? Number(v.contacto) : null,
           tip_id: Number(v.tip_id),
           pri_id: Number(v.importancia),
@@ -234,7 +235,7 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
     if (dataClientes) {
       //console.log("Data clientes: ",dataClientes)
       setClientes(dataClientes.getClienteByLoteResolver[0]);
-      //console.log(clientes.cli_id)
+      // console.log(clientes.cli_id)
        const cli = clientes.cli_id
       handleChangeCliente(cli)
 
@@ -264,16 +265,11 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
               layout="vertical"
               autoComplete="off"
               onFinish={(v) => onFinish(v)}
+              onFinishFailed={(v) => console.log("fallo")}
             >
               <Form.Item
                 label="Cliente"
                 name="cliente"
-                rules={[
-                  {
-                    required: true,
-                    message: "",
-                  },
-                ]}
               >
                 <Input disabled placeholder={clientes.cli_nombre} value={clientes.cli_id}/>
               </Form.Item>
