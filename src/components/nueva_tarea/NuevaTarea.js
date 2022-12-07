@@ -127,11 +127,6 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
     },
   };
 
-  const onSearchCliente = (val) => {
-    if (val.length >= 3) {
-      setSearchCliente(val);
-    }
-  };
 
   const onSearchUsuario = (val) => {
     if (val.length >= 3) {
@@ -139,14 +134,7 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
     }
   };
 
-  // const handleChangeCliente = (v) => {
-  //   form.resetFields(["contacto"]);
-  //   getContactos({ variables: { id: Number(v) } }).then((res) => {
-  //     if (res) {
-  //       setContactos(res.data.getContactosResolver);
-  //     }
-  //   });
-  // };
+
 
   function handleChangeCliente(v) {
     form.resetFields(["contacto"]);
@@ -265,7 +253,6 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
               layout="vertical"
               autoComplete="off"
               onFinish={(v) => onFinish(v)}
-              onFinishFailed={(v) => console.log("fallo")}
             >
               <Form.Item
                 label="Cliente"
