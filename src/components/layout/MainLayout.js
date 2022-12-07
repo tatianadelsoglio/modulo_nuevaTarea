@@ -14,14 +14,19 @@ const MainLayout = () => {
   //console.log(modori_id);
   const usu_id = Number(search.usu_id) ? Number(search.usu_id) : 1;
 
-  // OBJETO QUE VIAJA POR URL COMO STRING
-  const contentURL = search.content;
-  //STRING PASADO A OBJETO PARA LUEGO TRABAJARLO
-  const content = JSON.parse(contentURL);
-  //OBJETO DIVIDO EN CADA CAMPO
-  const campo1 = content.infoCampo1;
-  const campo2 = content.infoCampo2;
-  const campo3 = content.infoCampo3;
+  //Tarea desde Lotes, datos que se traen por localstorage
+
+  // const nombreC="DARREGUEIRA";
+  // const nombreL="SIN LOTE";
+  // const loteid= 0;
+  // localStorage.setItem("NombreCampo", nombreC);  
+  // localStorage.setItem("NombreLote", nombreL);
+
+  const campo1 = localStorage.getItem("NombreCampo");
+  const campo2 = localStorage.getItem("NombreLote");
+  const campo3 = Number(localStorage.getItem("loteId"));
+
+  console.log(campo3)
 
   const origen = search.ordigen ? search.origen : "todos";
   const generico_id = Number(search.generico_id);
