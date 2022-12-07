@@ -36,7 +36,7 @@ import Notificacion from "../layout/Notificacion";
 import "./NuevaTarea.css";
 
 const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
-  const { idUser, noteContent, setShowDrawer } = useContext(TaskContext);
+  const { idUser, noteContent, setShowDrawer} = useContext(TaskContext);
 
 
   const [tipoTareas, setTipoTareas] = useState([]);
@@ -154,6 +154,7 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
       if (res) {
         setContactos(res.data.getContactosResolver);
       }
+      console.log("desde nueva tarea, contactos: ", contactos)
     });
   };
 
@@ -231,9 +232,14 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
     // }
 
     if (dataClientes) {
-      console.log("Data clientes: ",dataClientes)
+      //console.log("Data clientes: ",dataClientes)
       setClientes(dataClientes.getClienteByLoteResolver[0]);
-      handleChangeCliente(clientes.cli_id)
+      //console.log(clientes.cli_id)
+       const cli = clientes.cli_id
+      handleChangeCliente(cli)
+
+
+      
     }
 
 
@@ -244,7 +250,7 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
     if (dataUsuarios) {
       setUsuarios(dataUsuarios.getUsuariosResolver);
     }
-  }, [dataTipoTareas, dataClientes, dataOrigenes, dataUsuarios]);
+  }, [dataTipoTareas, dataClientes, dataOrigenes, dataUsuarios, clientes]);
 
   return (
     <>
@@ -269,26 +275,6 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
                   },
                 ]}
               >
-                {/* <Select
-                  showSearch
-                  allowClear
-                  onClear={() => {
-                    setSearchCliente("");
-                    setContactos([]);
-                  }}
-                  onSearch={onSearchCliente}
-                  optionFilterProp="children"
-                  filterOption={(input, option) =>
-                    option.children.indexOf(input >= 0)
-                  }
-                  onChange={(v) => handleChangeCliente(v)}
-                >
-                  {clientes &&
-                    <Select.Option key={clientes.cli_id} value={clientes.cli_id}>
-                    {clientes.cli_nombre}
-                    </Select.Option>
-                  }
-                </Select> */}
                 <Input disabled placeholder={clientes.cli_nombre} value={clientes.cli_id}/>
               </Form.Item>
 
