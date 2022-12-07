@@ -175,7 +175,7 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
     const tar_horavencimiento = moment(v.tar_horavencimiento).format("HH:mm");
     const tar_vencimiento = v.tar_vencimiento;
     const usu_id = idUser;
-    const cli_id = Number(clientes.cli_id);
+    const cli_id = Number(clientes.cli_id); // tener en cuenta para cuando se pida campos y lotes como info, debo settearlo desde las variables que cree y traigo desde localstorage
     //console.log(cli_id)
     const con_id = v.contacto ? Number(v.contacto) : null;
     const tip_id = Number(v.tip_id);
