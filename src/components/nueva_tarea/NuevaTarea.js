@@ -38,6 +38,7 @@ import "./NuevaTarea.css";
 const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
   const { idUser, noteContent, setShowDrawer} = useContext(TaskContext);
 
+  console.log(campotres)
 
   const [tipoTareas, setTipoTareas] = useState([]);
   const [searchCliente, setSearchCliente] = useState("");
@@ -75,6 +76,8 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
   const { data: dataClientes } = useQuery(GET_CLIENTES_LOTE, {
     variables: { idLote: campotres },
   });
+
+  console.log(dataClientes)
 
   const { data: dataOrigenes } = useQuery(GET_ORIGENES);
 
@@ -225,10 +228,7 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
       setClientes(dataClientes.getClienteByLoteResolver[0]);
       // console.log(clientes.cli_id)
        const cli = clientes.cli_id
-      handleChangeCliente(cli)
-
-
-      
+      handleChangeCliente(cli)      
     }
 
 
