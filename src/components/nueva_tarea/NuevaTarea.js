@@ -192,7 +192,8 @@ const NuevaTarea = ({ modorigen, campouno, campodos, campotres }) => {
         inputTarea: {
           tar_asunto: v.tar_asunto,
           tar_horavencimiento: moment(v.tar_horavencimiento).format("HH:mm"),
-          tar_vencimiento: v.tar_vencimiento,
+          //tar_vencimiento: v.tar_vencimiento,
+          tar_vencimiento: moment(v.tar_vencimiento).format("YYYY-MM-DD"), //este es para .153
           usu_id: Number(idUser),
           cli_id: Number(clientes.cli_id),
           con_id: v.contacto ? Number(v.contacto) : null,
